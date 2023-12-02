@@ -35,6 +35,7 @@ def formatTime(time):
     sec = int(time % 60)
     
     return f'{min}m {sec}s'  
+
 matrixFiles = (('tsp_data/tsp1_253.txt', False),
                ('tsp_data/tsp2_1248.txt', False),
                ('tsp_data/tsp3_1194.txt', False),
