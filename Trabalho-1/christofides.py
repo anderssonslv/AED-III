@@ -1,6 +1,5 @@
 import numpy as np
-import sys 
-from time import time
+import sys
 
 def minTree(graph):
     numVertices, _ = graph.shape
