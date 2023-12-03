@@ -1,8 +1,6 @@
 import numpy as np
 import sys 
 from time import time
-import matplotlib.pyplot as plt
-import networkx as nx
 
 def minTree(graph):
     numVertices, _ = graph.shape
