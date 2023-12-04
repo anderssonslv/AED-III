@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import re
 from time import time
-from christofides import christofides
+from genetic import geneticAlgorithm
 
 def getMatrixFromFile(file):
     with open(file) as matrixFile:
@@ -15,7 +15,7 @@ def compairAlgorithm(file, runExact):
     target = re.search(r'_(\d+)\.', file)
     target = target.group(1)
     begin = time()
-    totalCostAproximate = christofides(matrix)
+    totalCostAproximate = geneticAlgorithm(matrix)
     executeTimeAproximate = time() - begin
     
     totalCostExact = 0
@@ -31,10 +31,10 @@ def compairAlgorithm(file, runExact):
 
 def formatTime(time):
     
-    min = int(time // 60)
+    mins = int(time // 60)
     sec = int(time % 60)
     
-    return f'{min}m {sec}s'  
+    return f'{mins}m {sec}s'  
 
 matrixFiles = (('tsp_data/tsp1_253.txt', False),
                ('tsp_data/tsp2_1248.txt', False),
@@ -47,7 +47,7 @@ results = []
 for file, runExact in matrixFiles:
     results.append(compairAlgorithm(file, runExact))
 
-resultsTable = pd.DataFrame(results, columns=['Arquivo', 'Custo Ótimo', 'Custo\nChristofides', 'Tempo de execução\nChristofides', 'Custo exato', 'Tempo de execução\nexato'])
+resultsTable = pd.DataFrame(results, columns=['Arquivo', 'Custo Ótimo', 'Custo\nGenético', 'Tempo de execução\nGenético', 'Custo exato', 'Tempo de execução\nexato'])
 
 fig, ax = plt.subplots(figsize=(10, 5))
 #ax.axis('tight')
