@@ -1,7 +1,9 @@
 import sys
 import numpy as np
+from time import time
 
 def tsp_branch_and_bound(graph):
+    
     print("Rodando branchAndBound...")
     def tsp_recursive(curr_pos, mask, cost):
         nonlocal n, graph, final_path, min_cost
@@ -20,6 +22,7 @@ def tsp_branch_and_bound(graph):
                 path.append(city)
                 tsp_recursive(city, mask | (1 << city), cost + graph[curr_pos][city])
                 path.pop()
+    
 
     n = len(graph)
     path = [0]
@@ -35,4 +38,7 @@ def getMatrixFromFile(file):
         matrix = np.loadtxt(matrixFile)
     return matrix
 
-tsp_branch_and_bound(getMatrixFromFile("tsp1_253.txt"))
+execTime = time()
+tsp_branch_and_bound(getMatrixFromFile("tsp2_1248.txt"))
+execTime -= time()
+print("Tempo = ",execTime)

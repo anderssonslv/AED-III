@@ -1,6 +1,8 @@
 import itertools
+from time import time
 
 def tsp_bruteforce(distances):
+    execTime = time()
     print("Rodando bruteForce...")
     num_cities = len(distances)
     cities = list(range(num_cities))
@@ -17,16 +19,15 @@ def tsp_bruteforce(distances):
             min_distance = distance
             optimal_path = path
     print(f"Concluido!\nCusto:{min_distance}\nCaminho:{optimal_path}")
+    execTime -= time()
+    print("Tempo = ",execTime)
     return min_distance, optimal_path
 
 import numpy as np 
 
 def getMatrixFromFile(file):
-    try:
-        with open(file, "r") as info:
-            matrix = np.loadtxt(info)
-    except FileNotFoundError:
-        print("Arquivo 'matriz.txt' não encontrado.")
+    with open(file) as matrixFile:
+        matrix = np.loadtxt(matrixFile)
     return matrix
 
-tsp_bruteforce(getMatrixFromFile("tsp1_253.txt"))
+tsp_bruteforce(getMatrixFromFile("tsp3_1194.txt"))
