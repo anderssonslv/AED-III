@@ -29,6 +29,7 @@ def compairAlgorithm(file, runExact):
     
     if runExact:
         begin = time()
+        tsp_branch_and_bound(matrix)
         
         
     
