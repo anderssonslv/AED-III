@@ -5,9 +5,15 @@ import re
 from time import time
 from genetic import geneticAlgorithm
 
+from algoritms.branchAndBound import tsp_branch_and_bound
+from algoritms.bruteForce import tsp_bruteforce
+
 def getMatrixFromFile(file):
-    with open(file) as matrixFile:
-        matrix = np.loadtxt(matrixFile)
+    try:
+        with open(file, "r") as info:
+            matrix = np.loadtxt(info)
+    except FileNotFoundError:
+        print("Arquivo 'matriz.txt' não encontrado.")
     return matrix
 
 def compairAlgorithm(file, runExact):
@@ -23,7 +29,8 @@ def compairAlgorithm(file, runExact):
     
     if runExact:
         begin = time()
-        # aqui tu roda o algoritmo exato pegando o caminho e o custo
+        
+        
     
     fileName = re.search(r'/(.*?)\.', file)
     fileName = fileName.group(1)
@@ -37,7 +44,7 @@ def formatTime(time):
     return f'{mins}m {sec}s'  
 
 matrixFiles = (('tsp_data/tsp1_253.txt', False),
-               ('tsp_data/tsp2_1248.txt', False),
+               ('tsp_data/tsp2_1248.txt', True),
                ('tsp_data/tsp3_1194.txt', False),
                ('tsp_data/tsp4_7013.txt', False),
                ('tsp_data/tsp5_27603.txt', False))
