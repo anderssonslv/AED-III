@@ -39,6 +39,6 @@ def getMatrixFromFile(file):
     return matrix
 
 execTime = time()
-tsp_branch_and_bound(getMatrixFromFile("tsp2_1248.txt"))
+tsp_branch_and_bound(getMatrixFromFile("tsp3_1194.txt"))
 execTime -= time()
 print("Tempo = ",execTime)
